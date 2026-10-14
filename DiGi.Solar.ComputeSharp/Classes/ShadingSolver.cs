@@ -62,7 +62,7 @@ namespace DiGi.Solar.ComputeSharp.Classes
         /// A receiver without a plane frame or a planar face gets no results, so TryGetShadingFactor returns false for it; it still casts shadows on the others.</para>
         /// <para>Receivers are dispatched in blocks whose shadows fit <see cref="MaxBufferBytes"/>; the shadows are sorted by receiver and caster triangle before the merge, so the results depend neither on the block size nor on the order the GPU appends them in.</para>
         /// <para>When no supported device matching <see cref="ComputeDeviceType"/> can be created (see <see cref="Create.GraphicsDevice(ComputeDeviceType)"/>), <see cref="ComputeDeviceType.Default"/> falls back to the CPU solve of the base class,
-        /// while an explicit <see cref="ComputeDeviceType.Hardware"/> request returns false. The obsolete <c>ComputeDeviceType.Software</c> (WARP) never gets a device, so it always returns false (ZiolkowskiJakub/DiGi.Solar#10).</para>
+        /// while an explicit <see cref="ComputeDeviceType.Hardware"/> request returns false. The obsolete <c>ComputeDeviceType.Software</c> (WARP) never gets a device, so it always returns false (DiGi-Organization/DiGi.Solar#10).</para>
         /// </summary>
         /// <returns>True if the solving operation completed successfully; otherwise, false, without assigning any result (also when the device reports more shadows for one receiver than it has caster triangles, which only a faulty dispatch can produce).</returns>
         public override bool Solve()

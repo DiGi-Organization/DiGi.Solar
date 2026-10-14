@@ -21,9 +21,9 @@ namespace DiGi.Solar.ComputeSharp.Enums
         /// <summary>
         /// The WARP software device. Withdrawn: no device is selected for it, so a solve requesting it returns false.
         /// <para>WARP loses shadows cast between buildings (13 to 28 % of the sun-facing samples of the 20 to 720 surface benchmark grids) and needs about 16 minutes to create the shading pipeline
-        /// (ZiolkowskiJakub/DiGi.Solar#10). The CPU <see cref="Solar.Classes.ShadingSolver"/> is the software path.</para>
+        /// (DiGi-Organization/DiGi.Solar#10). The CPU <see cref="Solar.Classes.ShadingSolver"/> is the software path.</para>
         /// </summary>
-        [Obsolete("WARP loses shadows cast between buildings and needs about 16 minutes to create its pipeline, so no device is selected for it; use the CPU DiGi.Solar.Classes.ShadingSolver instead. See ZiolkowskiJakub/DiGi.Solar#10.")]
+        [Obsolete("WARP loses shadows cast between buildings and needs about 16 minutes to create its pipeline, so no device is selected for it; use the CPU DiGi.Solar.Classes.ShadingSolver instead. See DiGi-Organization/DiGi.Solar#10.")]
         [Description("Software")] Software,
     }
 }

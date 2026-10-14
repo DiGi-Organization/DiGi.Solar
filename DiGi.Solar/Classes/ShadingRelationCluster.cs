@@ -62,7 +62,7 @@ namespace DiGi.Solar.Classes
 
         /// <summary>
         /// Finds the result relation of the given shading element by comparing the element's unique reference against the From side of every stored result relation.
-        /// <para>Unlike the generic <c>GetRelation</c> of the base cluster it never scans a relation's To references, so the cost is linear in the number of relations instead of the number of relations times the number of stored results: reading the results of a solved model with many receivers used to pay that scan once per receiver (ZiolkowskiJakub/DiGi.Solar#13).</para>
+        /// <para>Unlike the generic <c>GetRelation</c> of the base cluster it never scans a relation's To references, so the cost is linear in the number of relations instead of the number of relations times the number of stored results: reading the results of a solved model with many receivers used to pay that scan once per receiver (DiGi-Organization/DiGi.Solar#13).</para>
         /// </summary>
         /// <param name="shadingElement">The shading element whose result relation is looked up. This value can be null.</param>
         /// <returns>The result relation of the element, or null when the element is null or has no result relation.</returns>

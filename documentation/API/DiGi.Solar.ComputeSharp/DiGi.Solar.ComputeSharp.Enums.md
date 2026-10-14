@@ -35,4 +35,4 @@ The first hardware\-accelerated device \(GPU\) that supports double precision\.
 The WARP software device\. Withdrawn: no device is selected for it, so a solve requesting it returns false\.
 
 WARP loses shadows cast between buildings (13 to 28 % of the sun-facing samples of the 20 to 720 surface benchmark grids) and needs about 16 minutes to create the shading pipeline
-            (ZiolkowskiJakub/DiGi.Solar#10). The CPU [DiGi\.Solar\.Classes\.ShadingSolver](https://learn.microsoft.com/en-us/dotnet/api/digi.solar.classes.shadingsolver 'DiGi\.Solar\.Classes\.ShadingSolver') is the software path.
+            (DiGi-Organization/DiGi.Solar#10). The CPU [DiGi\.Solar\.Classes\.ShadingSolver](https://learn.microsoft.com/en-us/dotnet/api/digi.solar.classes.shadingsolver 'DiGi\.Solar\.Classes\.ShadingSolver') is the software path.

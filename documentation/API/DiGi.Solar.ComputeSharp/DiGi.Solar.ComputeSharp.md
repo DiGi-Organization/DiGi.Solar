@@ -21,7 +21,7 @@ Inheritance [System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system
 Gets the ComputeSharp graphics device matching the specified [ComputeDeviceType](DiGi.Solar.ComputeSharp.Enums.md#DiGi.Solar.ComputeSharp.Enums.ComputeDeviceType 'DiGi\.Solar\.ComputeSharp\.Enums\.ComputeDeviceType')\.
 
 Only a device passing [IsSupported\(this GraphicsDevice\)](DiGi.Solar.ComputeSharp.md#DiGi.Solar.ComputeSharp.Query.IsSupported(thisComputeSharp.GraphicsDevice) 'DiGi\.Solar\.ComputeSharp\.Query\.IsSupported\(this ComputeSharp\.GraphicsDevice\)') is returned: hardware-accelerated and supporting double precision, which the shading shaders require.
-            The WARP software device is never returned (ZiolkowskiJakub/DiGi.Solar#10), neither for the obsolete `ComputeDeviceType.Software` nor as the ComputeSharp default device on a machine without a hardware adapter.
+            The WARP software device is never returned (DiGi-Organization/DiGi.Solar#10), neither for the obsolete `ComputeDeviceType.Software` nor as the ComputeSharp default device on a machine without a hardware adapter.
 
 The returned device is shared by ComputeSharp and must not be disposed by the caller.
 
@@ -59,7 +59,7 @@ Inheritance [System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system
 Determines whether the ComputeSharp shading solver can run on the specified graphics device: the device must be hardware\-accelerated and support double precision\.
 
 The WARP software device is rejected even though it reports double precision as available: it loses shadows cast between buildings and needs about 16 minutes to create the shading pipeline
-            (ZiolkowskiJakub/DiGi.Solar#10). The CPU [DiGi\.Solar\.Classes\.ShadingSolver](https://learn.microsoft.com/en-us/dotnet/api/digi.solar.classes.shadingsolver 'DiGi\.Solar\.Classes\.ShadingSolver') is the software path.
+            (DiGi-Organization/DiGi.Solar#10). The CPU [DiGi\.Solar\.Classes\.ShadingSolver](https://learn.microsoft.com/en-us/dotnet/api/digi.solar.classes.shadingsolver 'DiGi\.Solar\.Classes\.ShadingSolver') is the software path.
 
 ```csharp
 public static bool IsSupported(this ComputeSharp.GraphicsDevice? graphicsDevice);

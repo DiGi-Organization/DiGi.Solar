@@ -7,7 +7,7 @@ namespace DiGi.Solar.ComputeSharp
         /// <summary>
         /// Gets the ComputeSharp graphics device matching the specified <see cref="ComputeDeviceType"/>.
         /// <para>Only a device passing <see cref="Query.IsSupported(global::ComputeSharp.GraphicsDevice?)"/> is returned: hardware-accelerated and supporting double precision, which the shading shaders require.
-        /// The WARP software device is never returned (ZiolkowskiJakub/DiGi.Solar#10), neither for the obsolete <c>ComputeDeviceType.Software</c> nor as the ComputeSharp default device on a machine without a hardware adapter.</para>
+        /// The WARP software device is never returned (DiGi-Organization/DiGi.Solar#10), neither for the obsolete <c>ComputeDeviceType.Software</c> nor as the ComputeSharp default device on a machine without a hardware adapter.</para>
         /// <para>The returned device is shared by ComputeSharp and must not be disposed by the caller.</para>
         /// </summary>
         /// <param name="computeDeviceType">The type of device to get.</param>

@@ -976,7 +976,7 @@ The newly created [ShadingSolverResultRelation](DiGi.Solar.Classes.md#DiGi.Solar
 
 Finds the result relation of the given shading element by comparing the element's unique reference against the From side of every stored result relation\.
 
-Unlike the generic `GetRelation` of the base cluster it never scans a relation's To references, so the cost is linear in the number of relations instead of the number of relations times the number of stored results: reading the results of a solved model with many receivers used to pay that scan once per receiver (ZiolkowskiJakub/DiGi.Solar#13).
+Unlike the generic `GetRelation` of the base cluster it never scans a relation's To references, so the cost is linear in the number of relations instead of the number of relations times the number of stored results: reading the results of a solved model with many receivers used to pay that scan once per receiver (DiGi-Organization/DiGi.Solar#13).
 
 ```csharp
 public DiGi.Solar.Classes.ShadingSolverResultRelation? GetShadingSolverResultRelation(DiGi.Solar.Interfaces.IShadingElement? shadingElement);

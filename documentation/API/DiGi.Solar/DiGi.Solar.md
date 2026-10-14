@@ -193,7 +193,7 @@ Each hemisphere is split into [altitudeCount](DiGi.Solar.md#DiGi.Solar.Create.Vi
 
 Ground patches use every caster, floor slabs included. A ground ray reaches a floor slab of a closed building only by passing its walls or roof, or by starting on its boundary: a wall touching a neighbour sees the neighbour's floor, not the ground. The ground itself is not modelled, so nothing below the lowest caster blocks.
 
-A blocked patch contributes nothing: light reflected by the facades and roofs that block the view is ignored. That is exact for a wall touching a neighbour, but underestimates surfaces in narrow street canyons and courtyards (ZiolkowskiJakub/DiGi.Solar#15).
+A blocked patch contributes nothing: light reflected by the facades and roofs that block the view is ignored. That is exact for a wall touching a neighbour, but underestimates surfaces in narrow street canyons and courtyards (DiGi-Organization/DiGi.Solar#15).
 
 ```csharp
 public static System.Collections.Generic.List<DiGi.Solar.Classes.ViewFactorResult>? ViewFactorResults(this DiGi.Solar.Classes.ShadingModel? shadingModel, System.Collections.Generic.IDictionary<string,DiGi.Geometry.Spatial.Classes.Vector3D>? normals, double tolerance, int altitudeCount=6, int azimuthCount=24);
@@ -255,7 +255,7 @@ When the ground is snow covered, the supplied albedo is ignored and the result i
 
 An albedo that is null, not a number, zero or negative, or greater than one resolves to [Default](DiGi.Solar.Constants.md#DiGi.Solar.Constants.Albedo.Default 'DiGi\.Solar\.Constants\.Albedo\.Default'). The upper bound subsumes the weather-file missing marker 999. Zero is treated as missing because weather records that carry no albedo column report it as zero rather than as the missing marker, and taking that at face value would silently remove the whole ground-reflected component.
 
-An EPW snow depth is not a reliable indicator of lying snow: POL_Warsaw.123750_IWEC.epw reports a constant 3.0 cm for every hour from April to November, a filler value that resolves to the snow reflectance for most of the year if read at face value (ZiolkowskiJakub/DiGi.Solar#2). The caller must decide [snowCovered](DiGi.Solar.md#DiGi.Solar.Query.Albedo(System.Nullable_double_,bool).snowCovered 'DiGi\.Solar\.Query\.Albedo\(System\.Nullable\<double\>, bool\)\.snowCovered') from a source it trusts rather than pass a raw snow depth.
+An EPW snow depth is not a reliable indicator of lying snow: POL_Warsaw.123750_IWEC.epw reports a constant 3.0 cm for every hour from April to November, a filler value that resolves to the snow reflectance for most of the year if read at face value (DiGi-Organization/DiGi.Solar#2). The caller must decide [snowCovered](DiGi.Solar.md#DiGi.Solar.Query.Albedo(System.Nullable_double_,bool).snowCovered 'DiGi\.Solar\.Query\.Albedo\(System\.Nullable\<double\>, bool\)\.snowCovered') from a source it trusts rather than pass a raw snow depth.
 
 ```csharp
 public static double Albedo(System.Nullable<double> albedo, bool snowCovered);
@@ -375,7 +375,7 @@ Builds the shaded part of a receiver from its shadow faces: the shadows are merg
 This is the post-processing both shading solvers share, so the CPU [ShadingSolver](DiGi.Solar.Classes.md#DiGi.Solar.Classes.ShadingSolver 'DiGi\.Solar\.Classes\.ShadingSolver') and the ComputeSharp solver cannot drift apart after the shadows are computed.
 
 If the merge fails (`DiGi.Geometry.Planar.Query.Union` returns `null` even after its snap-rounding retry), the unmerged shadows are clipped to the receiver and capped at its area instead ([ShadowFaces\(this PolygonalFace2D, IEnumerable&lt;PolygonalFace2D&gt;\)](DiGi.Solar.md#DiGi.Solar.Query.ShadowFaces(thisDiGi.Geometry.Planar.Classes.PolygonalFace2D,System.Collections.Generic.IEnumerable_DiGi.Geometry.Planar.Classes.PolygonalFace2D_) 'DiGi\.Solar\.Query\.ShadowFaces\(this DiGi\.Geometry\.Planar\.Classes\.PolygonalFace2D, System\.Collections\.Generic\.IEnumerable\<DiGi\.Geometry\.Planar\.Classes\.PolygonalFace2D\>\)')): a failed merge reads as shade, overstated at worst, and never as full sun.
-            The same fallback applies when clipping a merged face to the receiver fails (`DiGi.Geometry.Planar.Query.Intersection` returns `null`), which a union face with zero-area sliver holes has caused (ZiolkowskiJakub/DiGi.Solar#16).
+            The same fallback applies when clipping a merged face to the receiver fails (`DiGi.Geometry.Planar.Query.Intersection` returns `null`), which a union face with zero-area sliver holes has caused (DiGi-Organization/DiGi.Solar#16).
 
 ```csharp
 public static System.Collections.Generic.List<DiGi.Geometry.Planar.Classes.PolygonalFace2D>? ShadedFaces(this DiGi.Geometry.Planar.Classes.PolygonalFace2D? polygonalFace2D_Receiver, System.Collections.Generic.IEnumerable<DiGi.Geometry.Planar.Classes.PolygonalFace2D>? polygonalFace2Ds_Shadow);
