@@ -21,7 +21,7 @@ namespace DiGi.Solar.Classes
         private readonly List<IPolygonalFace2D>? polygonalFace2Ds;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:DiGi.Solar.Classes.GeometricalShadingSolverResult"/> class.
+        /// Initializes a new instance of the <see cref="DiGi.Solar.Classes.GeometricalShadingSolverResult"/> class.
         /// </summary>
         /// <param name="dateTime">The date and time associated with the shading result.</param>
         /// <param name="plane">The plane on which the geometrical calculations are performed.</param>
@@ -34,7 +34,7 @@ namespace DiGi.Solar.Classes
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:DiGi.Solar.Classes.GeometricalShadingSolverResult"/> class by cloning an existing result.
+        /// Initializes a new instance of the <see cref="DiGi.Solar.Classes.GeometricalShadingSolverResult"/> class by cloning an existing result.
         /// </summary>
         /// <param name="geometricalShadingSolverResult">The source geometrical shading solver result to clone.</param>
         public GeometricalShadingSolverResult(GeometricalShadingSolverResult? geometricalShadingSolverResult)
@@ -48,7 +48,7 @@ namespace DiGi.Solar.Classes
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:DiGi.Solar.Classes.GeometricalShadingSolverResult"/> class from a JSON object.
+        /// Initializes a new instance of the <see cref="DiGi.Solar.Classes.GeometricalShadingSolverResult"/> class from a JSON object.
         /// </summary>
         /// <param name="jsonObject">The JSON object containing the result data.</param>
         public GeometricalShadingSolverResult(JsonObject? jsonObject)
