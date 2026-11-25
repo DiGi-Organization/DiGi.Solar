@@ -1086,6 +1086,21 @@ The shading model to be used for calculations\.
 An array of date\-time values for which shading should be calculated\.
 ### Properties
 
+<a name='DiGi.Solar.Classes.ShadingSolver.ParallelOptions'></a>
+
+## ShadingSolver\.ParallelOptions Property
+
+Gets or sets the options of the loop over the receivers in [Solve\(\)](DiGi.Solar.Classes.md#DiGi.Solar.Classes.ShadingSolver.Solve() 'DiGi\.Solar\.Classes\.ShadingSolver\.Solve\(\)') \- degree, task scheduler, cancellation token; null uses `Core.Create.ParallelOptions()`\.
+
+A caller that solves several models at once passes them all one instance with a shared, concurrency-limited [System\.Threading\.Tasks\.ParallelOptions\.TaskScheduler](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.paralleloptions.taskscheduler 'System\.Threading\.Tasks\.ParallelOptions\.TaskScheduler'), so their loops share the cores instead of each claiming them (DiGi-Organization/DiGi.GIS.PostgreSQL#167). The results do not depend on the options.
+
+```csharp
+public System.Threading.Tasks.ParallelOptions? ParallelOptions { get; set; }
+```
+
+#### Property Value
+[System\.Threading\.Tasks\.ParallelOptions](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.paralleloptions 'System\.Threading\.Tasks\.ParallelOptions')
+
 <a name='DiGi.Solar.Classes.ShadingSolver.ShadingModel'></a>
 
 ## ShadingSolver\.ShadingModel Property

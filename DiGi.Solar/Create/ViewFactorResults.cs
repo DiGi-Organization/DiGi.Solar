@@ -26,6 +26,22 @@ namespace DiGi.Solar
         /// <returns>One result per receiver that has a plane, a face with area and a triangulation, or <see langword="null"/> when <paramref name="shadingModel"/> is null or a patch count is below 1.</returns>
         public static List<ViewFactorResult>? ViewFactorResults(this ShadingModel? shadingModel, IDictionary<string, Vector3D>? normals, double tolerance, int altitudeCount = 6, int azimuthCount = 24)
         {
+            return ViewFactorResults(shadingModel, normals, tolerance, altitudeCount, azimuthCount, null);
+        }
+
+        /// <summary>
+        /// Calculates, for every receiver of a shading model, how much of its sky and of its ground it can see past the other elements, running the loop over the receivers with the given parallel options - see <see cref="ViewFactorResults(ShadingModel?, IDictionary{string, Vector3D}?, double, int, int)"/> for the method.
+        /// <para>A caller that computes several models at once passes them all one <see cref="ParallelOptions"/> with a shared, concurrency-limited <see cref="ParallelOptions.TaskScheduler"/>, so their loops share the cores instead of each claiming them (DiGi-Organization/DiGi.GIS.PostgreSQL#167). The results do not depend on the options.</para>
+        /// </summary>
+        /// <param name="shadingModel">The shading model. This value can be null.</param>
+        /// <param name="normals">The outward unit normal of each receiver, keyed by its reference. A receiver missing from it, or null, uses its plane normal, which is the outward one only if the face is stored that way.</param>
+        /// <param name="tolerance">The distance tolerance.</param>
+        /// <param name="altitudeCount">The number of altitude bands per hemisphere.</param>
+        /// <param name="azimuthCount">The number of azimuth sectors per altitude band.</param>
+        /// <param name="parallelOptions">The options of the loop over the receivers - degree, task scheduler, cancellation token; null uses <c>Core.Create.ParallelOptions()</c>.</param>
+        /// <returns>One result per receiver that has a plane, a face with area and a triangulation, or <see langword="null"/> when <paramref name="shadingModel"/> is null or a patch count is below 1.</returns>
+        public static List<ViewFactorResult>? ViewFactorResults(this ShadingModel? shadingModel, IDictionary<string, Vector3D>? normals, double tolerance, int altitudeCount, int azimuthCount, ParallelOptions? parallelOptions)
+        {
             if (shadingModel is null || altitudeCount < 1 || azimuthCount < 1)
             {
                 return null;
@@ -128,7 +144,7 @@ namespace DiGi.Solar
 
             ViewFactorResult?[] viewFactorResults = new ViewFactorResult?[count_ShadingElement];
 
-            Parallel.For(0, count_ShadingElement, Core.Create.ParallelOptions(), i =>
+            Parallel.For(0, count_ShadingElement, parallelOptions ?? Core.Create.ParallelOptions(), i =>
             {
                 IShadingElement shadingElement = shadingElements[i];
                 Plane? plane = planes[i];

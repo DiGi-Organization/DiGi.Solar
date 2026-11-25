@@ -321,7 +321,7 @@ namespace DiGi.Solar.ComputeSharp.Classes
 
             List<IShadingSolverResult>?[] shadingSolverResultsArray = new List<IShadingSolverResult>?[count_Receiver];
 
-            Parallel.For(0, count_Receiver, Core.Create.ParallelOptions(), i =>
+            Parallel.For(0, count_Receiver, ParallelOptions ?? Core.Create.ParallelOptions(), i =>
             {
                 Geometry.Spatial.Classes.Plane plane = planes[i];
                 PolygonalFace2D polygonalFace2D = polygonalFace2Ds[i];

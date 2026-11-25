@@ -49,6 +49,12 @@ namespace DiGi.Solar.Classes
         public ShadingModel? ShadingModel { get; set; }
 
         /// <summary>
+        /// Gets or sets the options of the loop over the receivers in <see cref="Solve"/> - degree, task scheduler, cancellation token; null uses <c>Core.Create.ParallelOptions()</c>.
+        /// <para>A caller that solves several models at once passes them all one instance with a shared, concurrency-limited <see cref="ParallelOptions.TaskScheduler"/>, so their loops share the cores instead of each claiming them (DiGi-Organization/DiGi.GIS.PostgreSQL#167). The results do not depend on the options.</para>
+        /// </summary>
+        public ParallelOptions? ParallelOptions { get; set; }
+
+        /// <summary>
         /// Gets or sets the <see cref="ShadingSolverOptions"/> that define the parameters for the solving process.
         /// </summary>
         public ShadingSolverOptions? ShadingSolverOptions { get; set; }
@@ -169,7 +175,7 @@ namespace DiGi.Solar.Classes
 
             List<IShadingSolverResult>?[] shadingSolverResultsArray = new List<IShadingSolverResult>?[count_ShadingElement];
 
-            Parallel.For(0, count_ShadingElement, Core.Create.ParallelOptions(), i =>
+            Parallel.For(0, count_ShadingElement, ParallelOptions ?? Core.Create.ParallelOptions(), i =>
             {
                 Plane? plane = planes[i];
                 PolygonalFace2D? polygonalFace2D = polygonalFace2Ds[i];

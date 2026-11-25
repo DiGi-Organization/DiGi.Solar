@@ -234,6 +234,59 @@ The number of azimuth sectors per altitude band\.
 [System\.Collections\.Generic\.List&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1 'System\.Collections\.Generic\.List\`1')[ViewFactorResult](DiGi.Solar.Classes.md#DiGi.Solar.Classes.ViewFactorResult 'DiGi\.Solar\.Classes\.ViewFactorResult')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1 'System\.Collections\.Generic\.List\`1')  
 One result per receiver that has a plane, a face with area and a triangulation, or [null](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/null 'https://docs\.microsoft\.com/en\-us/dotnet/csharp/language\-reference/keywords/null') when [shadingModel](DiGi.Solar.md#DiGi.Solar.Create.ViewFactorResults(thisDiGi.Solar.Classes.ShadingModel,System.Collections.Generic.IDictionary_string,DiGi.Geometry.Spatial.Classes.Vector3D_,double,int,int).shadingModel 'DiGi\.Solar\.Create\.ViewFactorResults\(this DiGi\.Solar\.Classes\.ShadingModel, System\.Collections\.Generic\.IDictionary\<string,DiGi\.Geometry\.Spatial\.Classes\.Vector3D\>, double, int, int\)\.shadingModel') is null or a patch count is below 1\.
 
+<a name='DiGi.Solar.Create.ViewFactorResults(thisDiGi.Solar.Classes.ShadingModel,System.Collections.Generic.IDictionary_string,DiGi.Geometry.Spatial.Classes.Vector3D_,double,int,int,System.Threading.Tasks.ParallelOptions)'></a>
+
+## Create\.ViewFactorResults\(this ShadingModel, IDictionary\<string,Vector3D\>, double, int, int, ParallelOptions\) Method
+
+Calculates, for every receiver of a shading model, how much of its sky and of its ground it can see past the other elements, running the loop over the receivers with the given parallel options \- see [ViewFactorResults\(this ShadingModel, IDictionary&lt;string,Vector3D&gt;, double, int, int\)](DiGi.Solar.md#DiGi.Solar.Create.ViewFactorResults(thisDiGi.Solar.Classes.ShadingModel,System.Collections.Generic.IDictionary_string,DiGi.Geometry.Spatial.Classes.Vector3D_,double,int,int) 'DiGi\.Solar\.Create\.ViewFactorResults\(this DiGi\.Solar\.Classes\.ShadingModel, System\.Collections\.Generic\.IDictionary\<string,DiGi\.Geometry\.Spatial\.Classes\.Vector3D\>, double, int, int\)') for the method\.
+
+A caller that computes several models at once passes them all one [System\.Threading\.Tasks\.ParallelOptions](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.paralleloptions 'System\.Threading\.Tasks\.ParallelOptions') with a shared, concurrency-limited [System\.Threading\.Tasks\.ParallelOptions\.TaskScheduler](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.paralleloptions.taskscheduler 'System\.Threading\.Tasks\.ParallelOptions\.TaskScheduler'), so their loops share the cores instead of each claiming them (DiGi-Organization/DiGi.GIS.PostgreSQL#167). The results do not depend on the options.
+
+```csharp
+public static System.Collections.Generic.List<DiGi.Solar.Classes.ViewFactorResult>? ViewFactorResults(this DiGi.Solar.Classes.ShadingModel? shadingModel, System.Collections.Generic.IDictionary<string,DiGi.Geometry.Spatial.Classes.Vector3D>? normals, double tolerance, int altitudeCount, int azimuthCount, System.Threading.Tasks.ParallelOptions? parallelOptions);
+```
+#### Parameters
+
+<a name='DiGi.Solar.Create.ViewFactorResults(thisDiGi.Solar.Classes.ShadingModel,System.Collections.Generic.IDictionary_string,DiGi.Geometry.Spatial.Classes.Vector3D_,double,int,int,System.Threading.Tasks.ParallelOptions).shadingModel'></a>
+
+`shadingModel` [ShadingModel](DiGi.Solar.Classes.md#DiGi.Solar.Classes.ShadingModel 'DiGi\.Solar\.Classes\.ShadingModel')
+
+The shading model\. This value can be null\.
+
+<a name='DiGi.Solar.Create.ViewFactorResults(thisDiGi.Solar.Classes.ShadingModel,System.Collections.Generic.IDictionary_string,DiGi.Geometry.Spatial.Classes.Vector3D_,double,int,int,System.Threading.Tasks.ParallelOptions).normals'></a>
+
+`normals` [System\.Collections\.Generic\.IDictionary&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.idictionary-2 'System\.Collections\.Generic\.IDictionary\`2')[System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')[,](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.idictionary-2 'System\.Collections\.Generic\.IDictionary\`2')[DiGi\.Geometry\.Spatial\.Classes\.Vector3D](https://learn.microsoft.com/en-us/dotnet/api/digi.geometry.spatial.classes.vector3d 'DiGi\.Geometry\.Spatial\.Classes\.Vector3D')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.idictionary-2 'System\.Collections\.Generic\.IDictionary\`2')
+
+The outward unit normal of each receiver, keyed by its reference\. A receiver missing from it, or null, uses its plane normal, which is the outward one only if the face is stored that way\.
+
+<a name='DiGi.Solar.Create.ViewFactorResults(thisDiGi.Solar.Classes.ShadingModel,System.Collections.Generic.IDictionary_string,DiGi.Geometry.Spatial.Classes.Vector3D_,double,int,int,System.Threading.Tasks.ParallelOptions).tolerance'></a>
+
+`tolerance` [System\.Double](https://learn.microsoft.com/en-us/dotnet/api/system.double 'System\.Double')
+
+The distance tolerance\.
+
+<a name='DiGi.Solar.Create.ViewFactorResults(thisDiGi.Solar.Classes.ShadingModel,System.Collections.Generic.IDictionary_string,DiGi.Geometry.Spatial.Classes.Vector3D_,double,int,int,System.Threading.Tasks.ParallelOptions).altitudeCount'></a>
+
+`altitudeCount` [System\.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32 'System\.Int32')
+
+The number of altitude bands per hemisphere\.
+
+<a name='DiGi.Solar.Create.ViewFactorResults(thisDiGi.Solar.Classes.ShadingModel,System.Collections.Generic.IDictionary_string,DiGi.Geometry.Spatial.Classes.Vector3D_,double,int,int,System.Threading.Tasks.ParallelOptions).azimuthCount'></a>
+
+`azimuthCount` [System\.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32 'System\.Int32')
+
+The number of azimuth sectors per altitude band\.
+
+<a name='DiGi.Solar.Create.ViewFactorResults(thisDiGi.Solar.Classes.ShadingModel,System.Collections.Generic.IDictionary_string,DiGi.Geometry.Spatial.Classes.Vector3D_,double,int,int,System.Threading.Tasks.ParallelOptions).parallelOptions'></a>
+
+`parallelOptions` [System\.Threading\.Tasks\.ParallelOptions](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.paralleloptions 'System\.Threading\.Tasks\.ParallelOptions')
+
+The options of the loop over the receivers \- degree, task scheduler, cancellation token; null uses `Core.Create.ParallelOptions()`\.
+
+#### Returns
+[System\.Collections\.Generic\.List&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1 'System\.Collections\.Generic\.List\`1')[ViewFactorResult](DiGi.Solar.Classes.md#DiGi.Solar.Classes.ViewFactorResult 'DiGi\.Solar\.Classes\.ViewFactorResult')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1 'System\.Collections\.Generic\.List\`1')  
+One result per receiver that has a plane, a face with area and a triangulation, or [null](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/null 'https://docs\.microsoft\.com/en\-us/dotnet/csharp/language\-reference/keywords/null') when [shadingModel](DiGi.Solar.md#DiGi.Solar.Create.ViewFactorResults(thisDiGi.Solar.Classes.ShadingModel,System.Collections.Generic.IDictionary_string,DiGi.Geometry.Spatial.Classes.Vector3D_,double,int,int,System.Threading.Tasks.ParallelOptions).shadingModel 'DiGi\.Solar\.Create\.ViewFactorResults\(this DiGi\.Solar\.Classes\.ShadingModel, System\.Collections\.Generic\.IDictionary\<string,DiGi\.Geometry\.Spatial\.Classes\.Vector3D\>, double, int, int, System\.Threading\.Tasks\.ParallelOptions\)\.shadingModel') is null or a patch count is below 1\.
+
 <a name='DiGi.Solar.Query'></a>
 
 ## Query Class
